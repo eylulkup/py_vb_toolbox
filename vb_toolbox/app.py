@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Eylul is making changes
-Trial 1
-
-
 Created on Wed Feb 28 11:48:15 2024
 
 @author: bobducks
@@ -59,6 +55,10 @@ def create_parser():
     parser = argparse.ArgumentParser(description='Calculate the Vogt-Bailey index of a dataset. For more information, refer to https://github.com/VBIndex/py_vb_toolbox.',
                                      epilog=authors + " |n " + references + " |n " + copyright,
                                      formatter_class=MultilineFormatter)
+
+    parser.add_argument('-e', '--eigenvalue-index', metavar='INDEX', type=int, nargs=1, default=[1],
+                        help="""Index of the eigenvalue to use. Default is the second smallest eigenvalue (index 1).""")
+
     parser.add_argument('-j', '--jobs', metavar='N', type=int, nargs=1,
                         default=[multiprocessing.cpu_count()], help="""Maximum
                         number of jobs to be used. If absent, one job per CPU
@@ -122,6 +122,7 @@ def create_parser():
     parser.add_argument('-debug', '--debug', action='store_true',
                         help="""Save additional files for debugging.""")
 
+
     requiredNamed = parser.add_argument_group('required named arguments')
 
     requiredNamed.add_argument('-s', '--surface', metavar='file', type=str,
@@ -153,6 +154,8 @@ def main():
     args = parser.parse_args()
 
     n_cpus = args.jobs[0]
+    eigenvalue_index = args.eigenvalue_index[0]
+
     if not args.volume:
         nib_surf, vertices, faces = vb_index.open_gifti_surf(args.surface[0])
 
