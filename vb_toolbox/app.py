@@ -56,7 +56,7 @@ def create_parser():
                                      epilog=authors + " |n " + references + " |n " + copyright,
                                      formatter_class=MultilineFormatter)
 
-    parser.add_argument('-e', '--eigenvalue-index', metavar='INDEX', type=int, nargs=1, default=[1],
+    parser.add_argument('-e', '--eigenvalue_index', metavar='INDEX', type=int, nargs=1, default=[1],
                         help="""Index of the eigenvalue to use. Default is the second smallest eigenvalue (index 1).""")
 
     parser.add_argument('-j', '--jobs', metavar='N', type=int, nargs=1,

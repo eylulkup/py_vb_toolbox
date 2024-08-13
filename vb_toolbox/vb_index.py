@@ -1376,7 +1376,7 @@ def force_symmetric(M):
     return triu_M + diag_M + triu_M.transpose()
     
 
-def get_fiedler_eigenpair(method, full_brain, Q, D=None, is_symmetric=True, tol='def_tol', maxiter=50,eigenvalue_index=1):
+def get_fiedler_eigenpair(method, full_brain, Q, D=None, is_symmetric=True, tol='def_tol', maxiter=50, eigenvalue_index=1):
 
     """Solve the general eigenproblem to find the Fiedler vector and the corresponding eigenvalue.
 
